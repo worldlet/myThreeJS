@@ -112,10 +112,10 @@ renderer.render(scene, camera)
 // console.log(renderer.domElement)
 
 // 动画渲染循环
-const clock = new THREE.Clock()
+// const clock = new THREE.Clock()
 const render = () => {
   {
-    const spt = clock.getDelta()*1000 // 毫秒
+    // const spt = clock.getDelta()*1000 // 毫秒
     // console.log('两帧渲染时间间隔(毫秒)',spt)
     // console.log('帧率FPS',1000/spt)
     renderer.render(scene, camera)  // 执行渲染操作
