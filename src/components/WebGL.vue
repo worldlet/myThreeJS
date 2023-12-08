@@ -20,11 +20,11 @@ const scene = new THREE.Scene();
 // 创建一个 圆柱
 // const geometry = new THREE.CylinderGeometry(20, 40, 60, 60)
 // 创建一个 圆锥
-const geometry = new THREE.ConeGeometry(20, 60, 10)
+// const geometry = new THREE.ConeGeometry(20, 60, 10)
 // 创建一个 平面
 // const geometry = new THREE.PlaneGeometry(50, 30)
 // 创建一个 圆环
-// const geometry = new THREE.TorusGeometry(30, 10, 30, 50)
+const geometry = new THREE.TorusGeometry(30, 10, 30, 50)
 // 创建一个 环结
 // const geometry = new THREE.TorusKnotGeometry(30, 10, 300, 300)
 // 创建一个 八面体
@@ -138,17 +138,45 @@ const gui = new GUI();
 //改变交互界面style属性
 gui.domElement.style.right = '0px';
 gui.domElement.style.width = '300px';
+const obj = {
+  x: 50,
+  y: 50,
+  z: 50,
+};
+// gui增加交互界面，用来改变obj对应属性
+gui.add(obj, 'x', 0, 100);
+gui.add(mesh.position, 'x', -1000, 1000);
+gui.add(mesh.position, 'y', -1000, 1000);
+gui.add(mesh.position, 'z', -1000, 1000);
+
+// p1、p3轨迹线起始点坐标
+const p1 = new THREE.Vector3(-100, 0, -100);
+const p3 = new THREE.Vector3(100, 0, 100);
+// 计算p1和p3的中点坐标
+const x2 = (p1.x + p3.x)/2;
+const z2 = (p1.z + p3.z)/2;
+const h = 100;
+const p2 = new THREE.Vector3(x2, h, z2);
+// 三维二次贝赛尔曲线
+const curve = new THREE.QuadraticBezierCurve3(p1, p2, p3);
+
 
 onMounted(() => {
   document.getElementById('webgl').appendChild(renderer.domElement)
   render()
 })
 
+const btn = (e, data) => {
+  console.log(e, data)
+}
+
 </script>
 
 <template>
   three.js实例
   <div id="webgl"></div>
+<!--  <button @click="btn($event, '1212')">按钮</button>-->
+<!--  <button @click="e => btn(e, '1233')">按钮</button>-->
 </template>
 
 <style lang="scss" scoped>

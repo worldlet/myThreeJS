@@ -1,9 +1,10 @@
 <script setup>
-import WebGL from './components/WebGL.vue'
+// import WebGL from './components/WebGL.vue'
+import Viewport from "./components/Viewport.vue";
 </script>
 
 <template>
-  <WebGL />
+  <Viewport />
 </template>
 
 <style scoped>
